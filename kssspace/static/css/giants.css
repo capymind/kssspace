@@ -1,0 +1,6 @@
+.sotsog {
+    & .newton-said {
+        font-size: var(--font-size-6);
+        color: var(--kss-font-highlight);
+    }
+}

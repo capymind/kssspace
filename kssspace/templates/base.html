@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- the props -->
+    <link rel="stylesheet" href="https://unpkg.com/open-props" />
+    <link href="{{ url_for('static', filename='css/design-token.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/base.css') }}" rel="stylesheet">
+    {% block css %}{% endblock %}
+</head>
+
+<body>
+    <main id="main">
+        {% include 'fragments/header.html' %}
+        <div id="content">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+</body>
+
+</html>

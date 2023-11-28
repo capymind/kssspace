@@ -1,0 +1,3 @@
+quart[dotenv]
+# An async Python micro framework for building web applications.
+# https://github.com/pallets/quart
