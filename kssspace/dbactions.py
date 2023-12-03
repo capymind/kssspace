@@ -11,9 +11,9 @@ from quart_db import Connection
 from sqlalchemy import text
 
 from kssspace.sqls import (
+    FETCH_ALL_GIANT_TAGS,
     FETCH_ALL_GIANTS_SQL,
     SEARCH_GIANTS_SQL,
-    FETCH_ALL_GIANT_TAGS,
     get_search_giants_by_tags_sql,
 )
 

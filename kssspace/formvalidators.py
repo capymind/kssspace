@@ -6,7 +6,6 @@ What is form?
 """
 
 from flask import Request
-from enum import IntEnum
 
 from kssspace.types import InvalidData
 

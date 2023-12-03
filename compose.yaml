@@ -1,0 +1,18 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./instance:/kssspace/instance
+    expose:
+      - "5000"
+    ports:
+      - "8888:5000"
+    command:
+      [
+        "hypercorn",
+        "kssspace.main:create_app('production')",
+        "--bind",
+        "0.0.0.0:5000"
+      ]

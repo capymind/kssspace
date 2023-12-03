@@ -2,16 +2,15 @@
 Take Request and Return Response.
 """
 
-from quart import Blueprint, g, render_template, request, make_response
+from quart import Blueprint, g, render_template, request
 
-from kssspace.formvalidators import get_searchword, get_searchtags, get_search_style
 from kssspace.dbactions import (
     fetch_all_giants,
-    search_giants,
     fetch_all_tags,
+    search_giants,
     search_giants_by_tags,
 )
-from kssspace.types import InvalidData
+from kssspace.formvalidators import get_search_style, get_searchtags, get_searchword
 
 bp = Blueprint("space", __name__)
 learn = Blueprint("learn", __name__)

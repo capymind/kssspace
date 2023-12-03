@@ -5,12 +5,18 @@ from quart_db import QuartDB
 from kssspace.endpoints import bp, giants, learn
 
 
-def create_app() -> Quart:
+def create_app(mode: str = "development") -> Quart:
     """Create Quart app instance."""
+
+    match mode:
+        case "production":
+            instance_path = "/kssspace/instance"
+        case "development":
+            instance_path = "/home/rodi/projects/kssspace/instance"
 
     app = Quart(
         __name__,
-        instance_path="/home/rodi/projects/kssspace/instance",
+        instance_path=instance_path,
         instance_relative_config=True,
     )
 

@@ -18,5 +18,8 @@
 
     .introduction {
         padding-top: var(--size-6);
+        & p {
+            padding-top: var(--size-4);
+        }
     }
 }
