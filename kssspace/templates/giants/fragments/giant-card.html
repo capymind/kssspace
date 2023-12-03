@@ -1,0 +1,43 @@
+<article class="giant-card">
+    <h1 class="name">{{ giant.name }}</h1>
+    <p>
+        {{ giant.description }}
+    </p>
+    <div class="socials">
+        {% if giant.homepage %}
+        <sl-tooltip content="개인홈페이지" placement="top">
+            <a href="{{ giant.homepage }}" target="_" class="link">
+                {{ icons.home_up() }}
+            </a>
+        </sl-tooltip>
+        {% endif %}
+        {% if giant.github %}
+        <sl-tooltip content="GitHub" placement="top">
+            <a href="https://twitter.com/ericnormand" target="_" class="link">
+                {{ icons.github() }}
+            </a>
+        </sl-tooltip>
+        {% endif %}
+        {% if giant.twitter_x %}
+        <sl-tooltip content="X(ex. Twitter)" placement="top">
+            <a href="{{ giant.tiwtter_x }}" target="_" class="link">
+                {{ icons.twitter_x() }}
+            </a>
+        </sl-tooltip>
+        {% endif %}
+        {% if giant.mastodon %}
+        <sl-tooltip content="Mastodon" placement="top">
+            <a href="{{ giant.mastodon }}" target="_" class="link">
+                {{ icons.mastodon() }}
+            </a>
+        </sl-tooltip>
+        {% endif %}
+    </div>
+    <div class="tags">
+        {% if giant.tag_names is iterable %}
+        {% for tag in giant.tag_names %}
+        <span class="tag">{{ tag }}</span>
+        {% endfor %}
+        {% endif %}
+    </div>
+</article>

@@ -1,8 +1,29 @@
+import tomllib
 from quart import Quart
-from kssspace.endpoints import bp
+from quart_db import QuartDB
 
-app = Quart(__name__)
+from kssspace.endpoints import bp, giants, learn
 
-app.register_blueprint(bp)
-app.config['TEMPLATES_AUTO_RELOAD'] = True
-app.run()
+
+def create_app() -> Quart:
+    """Create Quart app instance."""
+
+    app = Quart(
+        __name__,
+        instance_path="/home/rodi/projects/kssspace/instance",
+        instance_relative_config=True,
+    )
+
+    app.config["TEMPLATES_AUTO_RELOAD"] = True
+    app.config.from_file("config/config.toml", load=tomllib.load, text=False)
+
+    # Database connection extension.
+    db = QuartDB()
+    db.init_app(app)
+
+    # Register blueprints.
+    app.register_blueprint(bp)
+    app.register_blueprint(learn, url_prefix="/learn")
+    app.register_blueprint(giants, url_prefix="/giants")
+
+    return app

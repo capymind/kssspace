@@ -1,0 +1,71 @@
+# 
+# 거인을 입력할 때 마다 아래의 양식을 지켜야한다.
+#
+# [[giants]]
+# name=""
+# description=""
+# homepage=""
+# github=""
+# twitter_x=""
+# mastodon=""
+# tags=["", "", ...]
+
+
+[[giants]]
+name = "Eric Normand"
+description = """\
+Grokking Simplicity의 저자로 이론과 수학보다는 실용적 관점에서 함수형 프로그래밍의 가치를 알게됐습니다.\
+"""
+homepage = "https://ericnormand.me"
+github = ""
+twitter_x = "https://twitter.com/ericnormand"
+mastodon = ""
+tags = []
+
+
+[[giants]]
+name = "David M. Beazley"
+description = """\
+Python Distilled의 저자로 단순한 Python 스킬이 아닌 여러 생각거리들을 던져줍니다. 내가 이해 못할 뿐...\
+"""
+homepage = "https://www.dabeaz.com/"
+github = ""
+twitter_x = ""
+mastodon = "https://mastodon.social/@dabeaz"
+tags = ["Python"]
+
+
+[[giants]]
+name = "Tom Christie"
+description = """\
+Encode의 수장으로 Starlette, HTTPX, DRF 외에도 많은 오픈소스를 만들고, 기여하고 계신 분 \
+"""
+homepage = "https://www.tomchristie.com/"
+github = "https://github.com/tomchristie"
+twitter_x = ""
+mastodon = ""
+tags = ["Python", "Encode", "Starlette", "DRF"]
+
+
+[[giants]]
+name = "Simon Willison"
+description = """\
+Django의 co-author였으며 현재 Datasette의 수장. 그의 블로그는 유용한 정보로 가득하다.\
+"""
+homepage = "https://simonwillison.net/"
+github = "https://github.com/simonw"
+twitter_x = "https://twitter.com/simonw"
+mastodon = "https://fedi.simonwillison.net/@simon"
+tags = ["Python", "Django", "Datasette"]
+
+
+[[giants]]
+name = "Armin Ronacher"
+description = """\
+Flask의 author 였으며, 지금은 Sentry에 있으며 Rust에 더 관심이 있지만 여전히 Python 거인이다.\
+"""
+homepage = "https://lucumr.pocoo.org/"
+github = "https://github.com/mitsuhiko"
+twitter_x = "https://twitter.com/mitsuhiko"
+mastodon = "https://hachyderm.io/@mitsuhiko"
+tags = ["Python", "Flask", "Sentry"]

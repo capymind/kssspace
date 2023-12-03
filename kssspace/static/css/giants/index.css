@@ -1,0 +1,11 @@
+.kss-main-tab {
+    --track-color: var(--kss-font-color);
+}
+
+.kss-tab::part(base) {
+    color: var(--kss-font-color);
+}
+
+.giant-tab-group {
+    padding-top: var(--size-6);
+}

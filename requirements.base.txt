@@ -1,3 +1,19 @@
 quart[dotenv]
 # An async Python micro framework for building web applications.
 # https://github.com/pallets/quart
+
+quart-db[sqlite]
+# Quart extension that provides managed connection(s) to postgresql databases(s).
+# https://github.com/pgjones/quart-db
+
+sqlalchemy
+# The Databse Toolkit for Python
+# https://github.com/sqlalchemy/sqlalchemy
+
+alembic
+# A database migrations tool for SQLAlchemy
+# https://github.com/sqlalchemy/alembic
+
+click
+# Python composable command line interface toolkit
+# https://github.com/pallets/click

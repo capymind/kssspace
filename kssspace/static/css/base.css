@@ -1,3 +1,13 @@
+html,
+body {
+    height: 100%;
+}
+
+body>footer {
+    position: sticky;
+    top: 100vh;
+}
+
 body {
     background-color: var(--kss-background);
     color: var(--kss-font-color);
@@ -22,11 +32,22 @@ a {
     padding: var(--size-6);
 }
 
+#footer {
+    margin: auto;
+    max-width: 55rem;
+    padding: var(--size-3);
+}
 
+
+.link:hover {
+    color: var(--kss-font-highlight);
+    background-color: var(--kss-background-highlight);
+}
 
 .header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
     & .navigation {
         display: flex;

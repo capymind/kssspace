@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% block css %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.12.0/cdn/themes/light.css" />
 <link href="{{ url_for('static', filename='css/giants.css') }}" rel="stylesheet">
+<link href="{{ url_for('static', filename='css/giants/index.css') }}" rel="stylesheet">
 {% endblock css %}
 
 {% block content %}
@@ -23,4 +25,25 @@
         </footer>
     </blockquote>
 </section>
+<section class="giant-tab-group">
+    <sl-tab-group class="kss-main-tab">
+        <sl-tab class="kss-tab" slot="nav" panel="giants">거인들</sl-tab>
+        <sl-tab class="kss-tab" slot="nav" panel="custom">의 말</sl-tab>
+        <sl-tab class="kss-tab" slot="nav" panel="advanced">에 대한 내 뻘소리</sl-tab>
+
+        <sl-tab-panel name="giants">
+            {% include 'giants/fragments/tab__giants.html' %}
+        </sl-tab-panel>
+        <sl-tab-panel name="custom">준비중...</sl-tab-panel>
+        <sl-tab-panel name="advanced">준비중...</sl-tab-panel>
+    </sl-tab-group>
+</section>
 {% endblock content %}
+
+
+{% block js %}
+<script type="module"
+    src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.12.0/cdn/shoelace-autoloader.js"></script>
+
+
+{% endblock js %}

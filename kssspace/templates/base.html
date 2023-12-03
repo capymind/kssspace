@@ -7,18 +7,70 @@
     <title>Document</title>
     <!-- the props -->
     <link rel="stylesheet" href="https://unpkg.com/open-props" />
+    <link href="{{ url_for('static', filename='css/reset.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/design-token.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/base.css') }}" rel="stylesheet">
     {% block css %}{% endblock %}
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"></script>
 </head>
 
 <body>
-    <main id="main">
+    <main id="main" hx-ext="shoelace">
         {% include 'fragments/header.html' %}
         <div id="content">
             {% block content %}{% endblock %}
         </div>
     </main>
+    <footer id="footer">
+        <div>
+            <span>권순신의 웹공간 copyright 2023-</span>
+        </div>
+    </footer>
+    <script src="https://unpkg.com/htmx.org@1.9.9"></script>
+    <script>
+        const slTypes = 'sl-button, sl-checkbox, sl-color-picker, sl-input, sl-radio-group, sl-range, sl-rating, sl-select, sl-switch, sl-textarea'
+
+        /* Lightly modified version of the same function in htmx.js */
+        function shouldInclude(elt) {
+
+            // sl-rating doesn't have a name attribute exposed through the Shoelace API
+            if (elt.tagName == 'SL-RATING' && elt.getAttribute('name')) {
+                return true;
+            }
+            if (elt.name === "" || elt.name == null || elt.disabled) {
+                return false;
+            }
+            if (elt.type === "submit") {
+                return false;
+            }
+            if (elt.tagName === 'SL-CHECKBOX' || elt.tagName === 'SL-SWITCH') {
+                return elt.checked;
+            }
+            return true;
+        }
+
+        htmx.defineExtension('shoelace', {
+            onEvent: function (name, evt) {
+                if ((name === "htmx:configRequest") && (evt.detail.elt.tagName == 'FORM')) {
+                    evt.detail.elt.querySelectorAll(slTypes).forEach((elt) => {
+                        if (shouldInclude(elt)) {
+
+                            if (elt.tagName === 'SL-CHECKBOX' || elt.tagName === 'SL-SWITCH') {
+                                evt.detail.parameters[elt.name] = elt.checked
+
+                            } else if (elt.tagName == 'SL-RATING') {
+                                evt.detail.parameters[elt.getAttribute('name')] = elt.value
+
+                            } else {
+                                evt.detail.parameters[elt.name] = elt.value
+                            }
+                        }
+                    })
+                }
+            }
+        })
+    </script>
+    {% block js %}{% endblock %}
 </body>
 
 </html>

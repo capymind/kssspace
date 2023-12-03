@@ -1,0 +1,12 @@
+{% import 'macros/icons.html' as icons %}
+{% if giants %}
+<section id="giatn-cards" class="giant-cards">
+    {% for giant in giants %}
+    {% include 'giants/fragments/giant-card.html' %}
+    {% endfor %}
+</section>
+{% else %}
+<div class="no-search-result">
+    검색과 일치하는 거인(인물)이 없습니다.
+</div>
+{% endif %}

@@ -1,0 +1,16 @@
+ruff
+# An extremely fast Python linter and code formatter, written in Rust.
+# https://github.com/astral-sh/ruff
+
+pytest
+# The pytest framework makes it easy to write small tests, yet scales to
+# support complex functional testing
+# https://github.com/pytest-dev/pytest
+
+litecli
+# CLI for SQLite Databases with auto-completion and syntax highlighting
+# https://github.com/dbcli/litecli
+
+mypy
+# Optional static typing for Python
+# https://github.com/python/mypy

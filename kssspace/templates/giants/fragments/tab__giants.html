@@ -1,0 +1,62 @@
+{% import 'macros/icons.html' as icons %}
+<section class="giants">
+    <p>
+        일면식은 없지만, 컨퍼런스, 책, 인터뷰 및 블로그를 통해 눈팅으로, 어깨너머로 알게 된 거인들입니다.
+        개발을 하는데 직, 간접적으로 영향을 받았습니다. 문제에 대한 아이디어를 혹은 공감가는 글귀들을 쉽게 찾아보려고 만든 페이지입니다.
+    </p>
+    <div class="search-panel">
+        <section class="tag-search-panel">
+            <h1>태그로 검색</h1>
+            <form x-data hx-get='{{ url_for("giants.search") }}' hx-target=".giant-cards-container" hx-swap="innerHTML"
+                hx-trigger="tagsearch">
+                <sl-radio-group label="검색 조건" name="tag-search-condition" value="or"
+                    @sl-change="$dispatch('tagsearch')">
+                    <sl-radio value="or">
+                        또는(OR)
+                        <small>(예: python태그 또는 rust태그를 가진 인물)</small>
+                    </sl-radio>
+                    <sl-radio value="and">
+                        그리고(AND)
+                        <small>(예: python태그 그리고 rust태그를 가진 인물)</small>
+                    </sl-radio>
+                </sl-radio-group>
+                <div class="giant-tags-container">
+                    <div class="giant-tags">
+                        태그:
+                        {% for tag in giant_tags %}
+                        <label class="tag tag__actionable">
+                            {{ tag.name }}
+                            <input type="checkbox" style="display:none" name="tag" value="{{ tag.name }}"
+                                @change="$dispatch('tagsearch')">
+                        </label>
+                        {% endfor %}
+                    </div>
+                </div>
+            </form>
+        </section>
+        <section class="name-search-panel">
+            <h1>인물명으로 검색</h1>
+            <form hx-get='{{ url_for("giants.search") }}' hx-target=".giant-cards-container" hx-swap="innerHTML"
+                x-data="{ q: null }">
+                <sl-input class="search-input" size="medium" type="search" placeholder="인물 명을 입력한 후 엔터를 쳐주세요..."
+                    x-model="q">
+                    <sl-icon name="search" slot="prefix"></sl-icon>
+                </sl-input>
+                <input type="hidden" name="q" :value="q">
+            </form>
+        </section>
+    </div>
+    <div class="giant-cards-container">
+        <section id="giant-cards" class="giant-cards">
+            {% for giant in giants %}
+            {% include 'giants/fragments/giant-card.html' %}
+            {% endfor %}
+        </section>
+    </div>
+</section>
+
+{% block js %}
+<script>
+
+</script>
+{% endblock js %}
