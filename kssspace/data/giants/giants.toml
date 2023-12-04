@@ -68,4 +68,16 @@ homepage = "https://lucumr.pocoo.org/"
 github = "https://github.com/mitsuhiko"
 twitter_x = "https://twitter.com/mitsuhiko"
 mastodon = "https://hachyderm.io/@mitsuhiko"
-tags = ["Python", "Flask", "Sentry"]
+tags = ["Python", "Flask", "Sentry", "Pallets"]
+
+
+[[giants]]
+name = "Philip Jones"
+description = """\
+Quart, Hypercorn 등 많은 오픈소스의 author이다. 본 사이트는 Quart와 Hypercorn을 사용 중이다.\
+"""
+homepage = "https://pgjones.dev/"
+github = "https://github.com/pgjones"
+twitter_x = "https://twitter.com/pdgjones"
+mastodon = "https://fosstodon.org/@pgjones"
+tags = ["Python", "Quart", "Hypercorn", "Pallets"]
