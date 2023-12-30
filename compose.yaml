@@ -5,10 +5,8 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./instance:/kssspace/instance
-    expose:
-      - "5000"
     ports:
-      - "8888:5000"
+      - "127.0.0.1:5555:5000"
     command:
       [
         "hypercorn",
