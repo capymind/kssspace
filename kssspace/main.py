@@ -2,6 +2,7 @@ import tomllib
 from quart import Quart
 from quart_db import QuartDB
 
+
 from kssspace.endpoints import bp, giants, learn
 
 

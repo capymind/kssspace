@@ -16,6 +16,7 @@ from sqlalchemy import (
     String,
     Table,
     Text,
+    Boolean,
     UniqueConstraint,
     func,
 )
@@ -85,4 +86,74 @@ author = Table(
     Column("ename", String),
     Column("nickname", String),
     *ColumnAdder.add_timestamp_and_audit_columns(),
+)
+
+
+note = Table(
+    "note",
+    metadata,
+    Column("id", Integer, primary_key=True),
+    Column("title", String(100), nullable=False),
+    Column("slug", String(255), unique=True),
+    Column("summary", Text, nullable=False),
+    Column("body", Text),
+    Column("thumbnail", String(255)),
+    Column("is_draft", Boolean, nullable=False, default=True),
+    Column(
+        "created_at",
+        DateTime,
+        nullable=False,
+        default=func.now(),
+        server_default=func.now(),
+    ),
+    Column("updated_at", DateTime),
+)
+
+note_tag = Table(
+    "note_tag",
+    metadata,
+    Column("id", Integer, primary_key=True),
+    Column("name", String, unique=True),
+)
+
+note_tag_assoc = Table(
+    "note_tag_assoc",
+    metadata,
+    Column("note_id", ForeignKey("note.id")),
+    Column("tag_id", ForeignKey("note_tag.id")),
+    UniqueConstraint(
+        "note_id",
+        "tag_id",
+        name="note_tag_assoc_uq_1",
+    ),
+)
+
+series = Table(
+    "series",
+    metadata,
+    Column("id", Integer, primary_key=True),
+    Column("name", String(100), unique=True),
+    Column("slug", String(255), unique=True),
+    Column("description", Text),
+    Column("thumbnail", String(255)),
+    Column(
+        "created_at",
+        DateTime,
+        nullable=False,
+        default=func.now(),
+        server_default=func.now(),
+    ),
+    Column("updated_at", DateTime),
+)
+
+series_note_assoc = Table(
+    "series_note_assoc",
+    metadata,
+    Column("series_id", ForeignKey("series.id")),
+    Column("note_id", ForeignKey("note.id")),
+    UniqueConstraint(
+        "series_id",
+        "note_id",
+        name="series_note_assoc_nq_1",
+    ),
 )

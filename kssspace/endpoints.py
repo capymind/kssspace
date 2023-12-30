@@ -3,12 +3,14 @@ Take Request and Return Response.
 """
 
 from quart import Blueprint, g, render_template, request
-
+from kssspace.utils import get_markdown_converter
 from kssspace.dbactions import (
     fetch_all_giants,
     fetch_all_tags,
     search_giants,
+    fetch_note_by_slug,
     search_giants_by_tags,
+    fetch_all_notes,
 )
 from kssspace.formvalidators import get_search_style, get_searchtags, get_searchword
 
@@ -73,4 +75,16 @@ async def giants_search():
 
 @learn.get("/", endpoint="page::index")
 async def learn_page():
-    return await render_template("learn/pages/index.html")
+    notes = await fetch_all_notes(g.connection)
+    return await render_template("learn/pages/index.html", notes=notes)
+
+
+@learn.get("/<slug>", endpoint="page::note")
+async def learn_note_page(slug: str):
+    """show individual note page."""
+
+    note = await fetch_note_by_slug(g.connection, slug)
+    mc = get_markdown_converter()
+    note["body"] = mc.convert(note["body"])
+
+    return await render_template("learn/pages/note.html", note=note)

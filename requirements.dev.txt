@@ -7,10 +7,6 @@ pytest
 # support complex functional testing
 # https://github.com/pytest-dev/pytest
 
-litecli
-# CLI for SQLite Databases with auto-completion and syntax highlighting
-# https://github.com/dbcli/litecli
-
 mypy
 # Optional static typing for Python
 # https://github.com/python/mypy

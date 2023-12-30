@@ -1,3 +1,67 @@
+"""
+Raw SQLs and other helpers which produce raw SQL.
+"""
+FETCH_NOTE_BY_SLUG_SQL = """
+SELECT    NT.id
+        , NT.slug
+        , NT.title
+        , NT.summary
+        , NT.body
+        , NT.thumbnail
+        , NT.created_at
+        , TG.tags
+FROM note                   AS NT
+LEFT JOIN
+(
+    SELECT    N.id
+            , group_concat(T.name, ',') AS tags
+
+    FROM note                   AS N
+    LEFT JOIN note_tag_assoc    AS A
+    ON 1=1
+        AND N.id        = A.note_id
+    LEFT JOIN note_tag          AS T
+    ON 1=1
+        AND A.tag_id    = T.id 
+    WHERE 1=1
+        AND N.slug      = :slug
+    GROUP BY N.id
+) AS TG
+ON 1=1
+    AND NT.id           = TG.id
+WHERE 1=1
+    AND NT.slug         = :slug
+"""
+
+FETCH_ALL_NOTES_SQL = """
+SELECT    NT.id
+        , NT.slug
+        , NT.title
+        , NT.summary
+        , NT.thumbnail
+        , NT.created_at
+        , TG.tag_names
+FROM note                  AS NT
+LEFT JOIN 
+(
+    SELECT    N.id
+            , group_concat(T.name, ',') AS tag_names
+    FROM note                  AS N
+    LEFT JOIN note_tag_assoc   AS A
+    ON 1=1
+        AND N.id        = A.note_id
+    LEFT JOIN note_tag         AS T
+    ON 1=1
+        AND A.tag_id    = T.id
+    WHERE 1=1
+        AND N.is_draft  = 0
+    GROUP BY N.id
+)   AS TG
+ON 1=1
+    AND NT.id    = TG.id
+"""
+
+
 FETCH_ALL_GIANTS_SQL = """
 SELECT    GA.id
         , GA.name

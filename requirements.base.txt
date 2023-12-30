@@ -6,6 +6,10 @@ quart-db[sqlite]
 # Quart extension that provides managed connection(s) to postgresql databases(s).
 # https://github.com/pgjones/quart-db
 
+quart-sqlalchemy
+# Quart SQLAlchemy
+# https://github.com/joeblackwaslike/quart-sqlalchemy
+
 sqlalchemy
 # The Databse Toolkit for Python
 # https://github.com/sqlalchemy/sqlalchemy
@@ -17,3 +21,23 @@ alembic
 click
 # Python composable command line interface toolkit
 # https://github.com/pallets/click
+
+polars
+
+
+markdown
+# A Python implementation of John Gruber’s Markdown with Extension support.
+# https://github.com/Python-Markdown/markdown
+
+bleach
+# Bleach is an allowed-list-based HTML sanitizing library that escapes or strips markup and attributes
+# https://github.com/mozilla/bleach
+
+Pygments
+# Pygments is a generic syntax highlighter written in Python
+# https://github.com/pygments/pygments
+
+
+litecli
+# CLI for SQLite Databases with auto-completion and syntax highlighting
+# https://github.com/dbcli/litecli

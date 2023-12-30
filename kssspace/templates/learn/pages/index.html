@@ -1,8 +1,48 @@
 {% extends 'base.html' %}
-
+{% block css %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.12.0/cdn/themes/light.css" />
+<link href="{{ url_for('static', filename='css/learn/index.css') }}" rel="stylesheet">
+{% endblock css %}
 
 {% block content %}
-<section>
-    내가 배운 것들
+<section class="learn-tab-group tab-group">
+    <sl-tab-group class="kss-main-tab">
+        <sl-tab class="kss-tab" slot="nav" panel="scenarios">시나리오와 패턴</sl-tab>
+        <sl-tab class="kss-tab" slot="nav" panel="notes">노트</sl-tab>
+        <sl-tab class="kss-tab" slot="nav" panel="series">시리즈</sl-tab>
+
+        <sl-tab-panel name="scenarios">
+           
+        </sl-tab-panel>
+        <sl-tab-panel name="notes">
+            <section class="notes">
+                {% for note in notes %}
+                <article class="note-card">
+                    <h1>
+                        <a href="{{ url_for('learn.page::note', slug=note.slug) }}">
+                            {{ note.title }}
+                        </a>
+                    </h1>
+                    <summary>{{ note.summary }}</summary>
+                    <div>
+                        {{ note.created_at }}
+                    </div>
+                    <div class="tags">
+                        {% for tag in note.tag_names %}
+                        <span class="tag">{{ tag }}</span>
+                        {% endfor %}
+                    </div>
+                </article>
+                {% endfor %}
+            </section>
+        </sl-tab-panel>
+        <sl-tab-panel name="series">준비중...</sl-tab-panel>
+    </sl-tab-group>
 </section>
 {% endblock content %}
+
+
+{% block js %}
+<script type="module"
+    src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.12.0/cdn/shoelace-autoloader.js"></script>
+{% endblock js %}

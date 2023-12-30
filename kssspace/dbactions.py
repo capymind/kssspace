@@ -8,14 +8,31 @@ import copy
 from typing import Any
 
 from quart_db import Connection
-from sqlalchemy import text
+from sqlalchemy import text, select
+from kssspace.tables import note as note_table
 
 from kssspace.sqls import (
     FETCH_ALL_GIANT_TAGS,
     FETCH_ALL_GIANTS_SQL,
     SEARCH_GIANTS_SQL,
+    FETCH_ALL_NOTES_SQL,
+    FETCH_NOTE_BY_SLUG_SQL,
     get_search_giants_by_tags_sql,
 )
+
+
+async def fetch_all_notes(conn: Connection) -> list[dict[str, Any]]:
+    stmt = str(text(FETCH_ALL_NOTES_SQL))
+    data = await conn.fetch_all(stmt)
+    data = _split_concatenated_values(data, "tag_names", ",")
+    return data
+
+
+async def fetch_note_by_slug(conn: Connection, slug: str) -> dict[str, Any]:
+    return await conn.fetch_one(
+        FETCH_NOTE_BY_SLUG_SQL,
+        values=dict(slug=slug),
+    )
 
 
 async def fetch_all_giants(conn: Connection):
@@ -65,7 +82,24 @@ def _split_concatenated_values(
     key: str,
     sep: str,
 ) -> list[dict[str, Any]]:
-    """Split concatenated value in given 'key' to list of values."""
+    """Split concatenated value in given 'key' to list of values.
+
+    (before) a
+    [
+        {
+            "name": "choco",
+            "value": "1,2,3,4,5"
+        }
+    ]
+
+    (after) _split_concatenated_values(a, "value", ",")
+    [
+        {
+            "name": "choco",
+            "value": ["1", "2", "3", "4", "5"]
+        }
+    ]
+    """
 
     data = copy.deepcopy(data)
     for d in data:

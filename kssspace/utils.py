@@ -5,6 +5,7 @@ Utility functions.
 모듈 재구성 및 리네임(rename)을 생각해봐야함.
 """
 
+import markdown
 from collections import Counter
 from typing import Any
 
@@ -57,3 +58,16 @@ def read_giants_from_toml(filename: str) -> list[GiantRecord]:
             raise DuplicatedNameError(f"동일한 이름이 존재합니다. {duplicates}")
 
         return giants
+
+
+def get_markdown_converter() -> markdown.Markdown:
+    """convert given markdown text to html."""
+    return markdown.Markdown(
+        extensions=[
+            "meta",
+            "fenced_code",
+            "codehilite",
+            "toc",
+        ],
+        output_format="html",
+    )

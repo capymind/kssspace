@@ -1,0 +1,19 @@
+.notes {
+    display: flex;
+    flex-direction: column;
+}
+
+.note-card {
+    padding: 1rem;
+    background-color: var(--kss-background-layer-1);
+}
+
+.learn-tab-group {
+    padding-top: var(--size-6);
+}
+
+.scenarios__hero {
+    & img {
+        object-fit: contain;
+    }
+}
